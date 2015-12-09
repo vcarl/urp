@@ -1,3 +1,4 @@
+import Restify from 'restify'
 import { handleMessage, sendInventoryMessage } from '../sendMessage'
 
 export default function buyItem(req, res, next) {
