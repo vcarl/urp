@@ -6,4 +6,10 @@ export default {
     buy
     ,sell
   ]
+  ,GET: [
+  ]
+  ,PUT: [
+  ]
+  ,DELETE: [
+  ]
 }
