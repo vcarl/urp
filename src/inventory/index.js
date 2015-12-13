@@ -1,9 +1,8 @@
-import buyItem from './buy'
-import sellItem from './sell'
+import buy from './buy'
+import sell from './sell'
 import queue from './queue'
 
-export {
-  buyItem
-  ,sellItem
-  ,queue
-}
+export default [
+  buy
+  ,sell
+]

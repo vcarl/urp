@@ -1,7 +1,14 @@
 import Restify from 'restify'
 import { handleMessage, sendInventoryMessage } from '../sendMessage'
 
-export default function buyItem(req, res, next) {
+const route = '/inventory/:id/buy';
+
+const validation = [
+  {field: 'quantity', type: 'integer', required: true}
+  ,{field: 'price', type: 'float', required: true}
+]
+
+function handler(req, res, next) {
   if (typeof req.body.quantity === 'undefined' || req.body.quantity === null) {
     res.send(new Restify.errors.BadRequestError('No quantity given'));
     return next()
@@ -17,4 +24,10 @@ export default function buyItem(req, res, next) {
     ,req.body.price
     ,handleMessage(res)
   )
+}
+
+export default {
+  route
+  ,validation
+  ,handler
 }

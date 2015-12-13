@@ -65,12 +65,15 @@ export default function validatedRoute(handler, typeDefinitions) {
       let { field, type, required } = fieldType;
       let value = req.body[field];
 
+      // Check if the field is required and empty.
       if (required && Validator.isNull(value)) {
         validationErrors.push(`Missing required field: '${field}'`);
       }
+      // Check if the field's value is valid.
       else if (!isValid(type, value)) {
         validationErrors.push(`Invalid value: ${field}: '${value}' should be of type '${type}'`);
       }
+      // If we're all good, convert the value from a string.
       else {
         req.body[field] = convert(type, value);
       }

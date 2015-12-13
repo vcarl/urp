@@ -1,6 +1,6 @@
 import Restify from 'restify'
 import uuid    from 'uuid'
-import { buyItem, sellItem } from './inventory/index'
+import Routes from './inventory'
 import validatedRoute from './validatedRoute'
 
 let server = Restify.createServer();
@@ -11,8 +11,9 @@ let buyTypes = [
   ,{field: 'price', type: 'float', required: true}
 ]
 
-server.post('/inventory/:id/buy', validatedRoute(buyItem, buyTypes));
-server.post('/inventory/:id/sell', sellItem);
+Routes.forEach(function(route) {
+  server.post(route.route, validatedRoute(route.handler, route.validation));
+});
 
 server.listen(8080, function() {
   console.log('%s listening at %s', server.name, server.url);
