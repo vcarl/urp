@@ -1,4 +1,4 @@
-import sqs, { queueUrl } from './inventory/queue';
+import sqs, { queueUrl } from './queue';
 
 export function handleMessage(res) {
   return (err, data) => {

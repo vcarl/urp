@@ -1,6 +1,6 @@
 import Restify from 'restify'
 import uuid    from 'uuid'
-import Routes from './inventory'
+import Routes from './routes'
 import validatedRoute from './validatedRoute'
 
 let server = Restify.createServer();
@@ -11,7 +11,7 @@ let buyTypes = [
   ,{field: 'price', type: 'float', required: true}
 ]
 
-Routes.forEach(function(route) {
+Routes.POST.forEach(function(route) {
   server.post(route.route, validatedRoute(route.handler, route.validation));
 });
 
